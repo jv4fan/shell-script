@@ -4,6 +4,12 @@
 sudo apt-get update
 sudo apt-get upgrade -y
 
+# 检查并安装 ufw
+if ! command -v ufw &> /dev/null
+then
+    sudo apt-get install ufw -y
+fi
+
 # 添加新用户
 read -p "输入新添加用户名: " new_username
 sudo adduser $new_username
@@ -24,4 +30,4 @@ sudo ufw allow 443
 sudo ufw allow $new_ssh_port
 
 # 成功提示
-echo "Setup completed successfully."
+echo "初始化完成."
